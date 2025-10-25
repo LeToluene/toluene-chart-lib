@@ -16,6 +16,7 @@ kotlin {
 		generateTypeScriptDefinitions()
 
 		compilations["main"].packageJson {
+			customField("homepage", "https://github.com/LeToluene/toluene-chart-lib")
 			customField("license", "LGPL-3.0-or-later")
 		}
 	}
