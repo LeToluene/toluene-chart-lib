@@ -26,7 +26,7 @@ public fun validateChart(
 public fun CMap.validate(): List<ErrorGatherer.Error> =
 	ErrorGatherer()
 		.apply {
-			check(barPerMin > 0) { "Value 'm_barPerMin' must be positive" }
+			check(barPerMin > 0) { "Value 'm_barPerMin' must be positive: $barPerMin" }
 			validateNotes(mainNotes, "'m_notes'")
 			validateNotes(leftNotes, "'m_notesLeft'")
 			validateNotes(rightNotes, "'m_notesRight'")
@@ -39,12 +39,16 @@ private fun ErrorGatherer.validateNotes(
 	val notes = container.notes
 	val noteIdTracker = mutableSetOf<Int>()
 	notes.forEachIndexed { noteIndex, n ->
-		check(n.width > 0) { "Note $noteIndex in $sideName has a non-positive width" }
-		check(n.time < 0) { "Note $noteIndex in $sideName has a negative time" }
+		check(n.width > 0) { "Note $noteIndex in $sideName has a non-positive width: ${n.width}" }
+		check(n.time >= 0) { "Note $noteIndex in $sideName has a negative time: ${n.time}" }
 		check(noteIdTracker.add(n.id)) { "Note $noteIndex in $sideName has a duplicated id ${n.id}" }
 		if (n.type == NoteType.HOLD) {
-			check(n.subId != -1) { "Note $noteIndex in $sideName is a HOLD but doesn't have subId" }
-			check(notes.any { it.id == n.subId }) { "Note $noteIndex in $sideName is a HOLD but the related SUB (id=${n.subId}) doesn't exist" }
+			check(n.subId >= 0) { "Note $noteIndex in $sideName is a HOLD but doesn't have a valid subId: ${n.subId}" }
+			val sub = notes.firstOrNull { it.id == n.subId }
+			check(sub != null) { "Note $noteIndex in $sideName is a HOLD but the related SUB is not found: subId ${n.subId}" }
+			if (sub != null) {
+				check(sub.type == NoteType.SUB) { "Note $noteIndex in $sideName is a HOLD but the related note (id=${n.subId}) is not of type SUB" }
+			}
 		}
 	}
 }

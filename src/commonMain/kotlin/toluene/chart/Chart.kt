@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlChildrenName
 import nl.adaptivity.xmlutil.serialization.XmlElement
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
+import nl.adaptivity.xmlutil.util.CompactFragment
 import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 
@@ -14,7 +15,7 @@ import kotlin.js.JsExport
 @JsExport
 public data class CMap(
 	@XmlSerialName("m_path") @XmlElement var path: String,
-	@XmlSerialName("m_barPerMin") @XmlElement var barPerMin: Int,
+	@XmlSerialName("m_barPerMin") @XmlElement var barPerMin: Double,
 	@XmlSerialName("m_timeOffset") @XmlElement var timeOffset: Double,
 	@XmlSerialName("m_leftRegion") @XmlElement var leftRegion: String,
 	@XmlSerialName("m_rightRegion") @XmlElement var rightRegion: String,
@@ -22,6 +23,7 @@ public data class CMap(
 	@XmlSerialName("m_notes") val mainNotes: NoteContainer,
 	@XmlSerialName("m_notesLeft") val leftNotes: NoteContainer,
 	@XmlSerialName("m_notesRight") val rightNotes: NoteContainer,
+	@XmlSerialName("m_argument") val arguments: CompactFragment,
 )
 
 @Serializable
