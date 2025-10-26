@@ -4,8 +4,13 @@ plugins {
 	kotlin("multiplatform") version "2.2.20"
 	kotlin("plugin.serialization") version "2.2.20"
 
+	`maven-publish`
+
 	id("com.gradleup.shadow") version "9.2.2"
 }
+
+group = "cn.taskeren.toluene"
+version = "1.0.0"
 
 kotlin {
 	jvm()
@@ -43,4 +48,22 @@ tasks.withType<ShadowJar> {
 	)
 	configurations = listOf(project.configurations.getByName("jvmRuntimeClasspath"))
 	mainClass = "toluene.chart.MainKt"
+}
+
+publishing {
+	@Suppress("SpellCheckingInspection")
+	repositories {
+		val lwgmrPassword = project.findProperty("lwgmr.password") as? String
+		if (lwgmrPassword != null) {
+			println("Adding LWGMR repository in publishing repositories")
+			maven {
+				name = "LWGMR"
+				url = uri("https://lwgmr.elytra.cn")
+				credentials {
+					username = "Taskeren"
+					password = lwgmrPassword
+				}
+			}
+		}
+	}
 }
