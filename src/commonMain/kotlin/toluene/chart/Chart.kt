@@ -23,7 +23,7 @@ public data class CMap(
 	@XmlSerialName("m_notes") val mainNotes: NoteContainer,
 	@XmlSerialName("m_notesLeft") val leftNotes: NoteContainer,
 	@XmlSerialName("m_notesRight") val rightNotes: NoteContainer,
-	@XmlSerialName("m_argument") val arguments: CompactFragment,
+	@XmlSerialName("m_argument") val arguments: CompactFragment? = null,
 )
 
 @Serializable
