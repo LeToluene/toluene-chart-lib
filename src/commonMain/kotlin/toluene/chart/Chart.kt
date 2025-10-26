@@ -14,17 +14,24 @@ import kotlin.js.JsExport
 @XmlSerialName("CMap")
 @JsExport
 public data class CMap(
-	@XmlSerialName("m_path") @XmlElement var path: String,
-	@XmlSerialName("m_barPerMin") @XmlElement var barPerMin: Double,
-	@XmlSerialName("m_timeOffset") @XmlElement var timeOffset: Double,
-	@XmlSerialName("m_leftRegion") @XmlElement var leftRegion: String,
-	@XmlSerialName("m_rightRegion") @XmlElement var rightRegion: String,
-	@XmlSerialName("m_mapID") @XmlElement var mapId: String,
+	@XmlSerialName("m_path") @XmlElement val path: String,
+	@XmlSerialName("m_barPerMin") @XmlElement val barPerMin: Double,
+	@XmlSerialName("m_timeOffset") @XmlElement val timeOffset: Double,
+	@XmlSerialName("m_leftRegion") @XmlElement val leftRegion: SideType,
+	@XmlSerialName("m_rightRegion") @XmlElement val rightRegion: SideType,
+	@XmlSerialName("m_mapID") @XmlElement val mapId: String,
 	@XmlSerialName("m_notes") val mainNotes: NoteContainer,
 	@XmlSerialName("m_notesLeft") val leftNotes: NoteContainer,
 	@XmlSerialName("m_notesRight") val rightNotes: NoteContainer,
 	@XmlSerialName("m_argument") val arguments: CompactFragment,
 )
+
+@Serializable
+@JsExport
+public enum class SideType {
+	PAD,
+	MIXER,
+}
 
 @Serializable
 @JsExport
@@ -53,3 +60,5 @@ public enum class NoteType {
 	HOLD,
 	SUB,
 }
+
+public val CMap.noteCount: Int get() = mainNotes.notes.size + leftNotes.notes.size + rightNotes.notes.size

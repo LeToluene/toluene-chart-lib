@@ -2,7 +2,6 @@
 
 package toluene.chart
 
-import nl.adaptivity.xmlutil.serialization.XML
 import org.intellij.lang.annotations.Language
 import toluene.chart.util.ErrorGatherer
 import toluene.chart.util.throwIfErrors
