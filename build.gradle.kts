@@ -10,9 +10,11 @@ plugins {
 }
 
 group = "cn.taskeren.toluene"
-version = "1.0.0"
+version = "1.0.1"
 
 kotlin {
+	explicitApi()
+
 	jvm()
 	js(IR) {
 		browser()

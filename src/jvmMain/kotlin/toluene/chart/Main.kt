@@ -1,10 +1,11 @@
 package toluene.chart
 
+import toluene.chart.util.throwIfErrors
 import kotlin.io.path.Path
 import kotlin.io.path.notExists
 import kotlin.io.path.readText
 
-fun main(argsArray: Array<String>) {
+public fun main(argsArray: Array<String>) {
 	val args = argsArray.toMutableList()
 
 	when (args.removeFirstOrNull()) {
@@ -15,7 +16,11 @@ fun main(argsArray: Array<String>) {
 			if (path.notExists()) return println("Path $path does not exist")
 			try {
 				val text = path.readText()
-				validateChart(text).onFailure {
+				runCatching {
+					ChartLib.decodeFromString(text).validate().throwIfErrors()
+				}.onSuccess {
+					println("Validation passed!")
+				}.onFailure {
 					println("Validation failed!")
 					it.printStackTrace()
 				}

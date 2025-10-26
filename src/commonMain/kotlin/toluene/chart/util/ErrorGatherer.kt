@@ -1,25 +1,33 @@
 package toluene.chart.util
 
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.ReturnsNotNull
-import kotlin.contracts.contract
-
-class ErrorGatherer {
-	enum class Level {
+/**
+ * An error gatherer for validation.
+ * The invalid conditions can be checked in one go, and all errors will be collected.
+ *
+ * ```kotlin
+ * val eg = ErrorGatherer()
+ * with(eg) {
+ *     check(someCondition) { "Some condition failed!" }
+ * }
+ * eg.build().throwIfErrors()
+ * ```
+ */
+public class ErrorGatherer {
+	public enum class Level {
 		WEAK_WARN,
 		WARN,
 		ERROR,
 	}
 
-	data class Error(
+	public data class Error(
 		val message: String,
-		val level: ErrorGatherer.Level,
+		val level: Level,
 	)
 
 	@PublishedApi
-	internal var errors = mutableListOf<Error>()
+	internal var errors: MutableList<Error> = mutableListOf<Error>()
 
-	inline fun check(
+	public inline fun check(
 		condition: Boolean,
 		level: Level = Level.ERROR,
 		lazyMessage: () -> String,
@@ -30,10 +38,10 @@ class ErrorGatherer {
 		}
 	}
 
-	fun build(): List<Error> = errors.toList()
+	public fun build(): List<Error> = errors.toList()
 }
 
-fun List<ErrorGatherer.Error>.throwIfErrors() {
+public fun List<ErrorGatherer.Error>.throwIfErrors() {
 	if (isNotEmpty()) {
 		val text =
 			buildString {

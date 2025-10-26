@@ -12,7 +12,7 @@ import kotlin.js.JsExport
 @Serializable
 @XmlSerialName("CMap")
 @JsExport
-data class CMap(
+public data class CMap(
 	@XmlSerialName("m_path") @XmlElement var path: String,
 	@XmlSerialName("m_barPerMin") @XmlElement var barPerMin: Int,
 	@XmlSerialName("m_timeOffset") @XmlElement var timeOffset: Double,
@@ -26,14 +26,14 @@ data class CMap(
 
 @Serializable
 @JsExport
-data class NoteContainer(
+public data class NoteContainer(
 	@XmlSerialName("m_notes") @XmlChildrenName("CMapNoteAsset") val notes: List<CMapNoteAsset>,
 )
 
 @Serializable
 @XmlSerialName("CMapNoteAsset")
 @JsExport
-data class CMapNoteAsset(
+public data class CMapNoteAsset(
 	@XmlSerialName("m_id") @XmlElement val id: Int,
 	@XmlSerialName("m_type") @XmlElement val type: NoteType,
 	@XmlSerialName("m_time") @XmlElement val time: Double,
@@ -45,7 +45,7 @@ data class CMapNoteAsset(
 
 @Serializable
 @JsExport
-enum class NoteType {
+public enum class NoteType {
 	NORMAL,
 	CHAIN,
 	HOLD,

@@ -14,15 +14,16 @@ import kotlin.js.JsExport
  * If the result is successful, it is a valid chart,
  */
 @JsExport
-fun validateChart(
+@Deprecated("Use CMap.validate() instead")
+public fun validateChart(
 	@Language("XML") xmlString: String,
-): Result<Unit> = runCatching { XML.decodeFromString<CMap>(xmlString) }.map { it.validate().throwIfErrors() }
+): Result<Unit> = runCatching { ChartLib.decodeFromString(xmlString) }.map { it.validate().throwIfErrors() }
 
 /**
  * Validate the given chart map.
  */
 @JsExport
-fun CMap.validate(): List<ErrorGatherer.Error> =
+public fun CMap.validate(): List<ErrorGatherer.Error> =
 	ErrorGatherer()
 		.apply {
 			check(barPerMin > 0) { "Value 'm_barPerMin' must be positive" }
