@@ -7,10 +7,18 @@ plugins {
 	`maven-publish`
 
 	id("com.gradleup.shadow") version "9.2.2"
+	id("com.palantir.git-version") version "4.1.0"
 }
 
 group = "cn.taskeren.toluene"
-version = "1.0.3"
+version = "0.0.0"
+
+try {
+	val gitVersion: groovy.lang.Closure<String> by extra
+	version = gitVersion()
+} catch (e: Exception) {
+	println("Failed to get git version: ${e.message}")
+}
 
 kotlin {
 	explicitApi()
