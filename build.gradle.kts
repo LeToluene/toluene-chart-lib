@@ -58,15 +58,14 @@ tasks.withType<ShadowJar> {
 publishing {
 	@Suppress("SpellCheckingInspection")
 	repositories {
-		val lwgmrPassword = project.findProperty("lwgmr.password") as? String
-		if (lwgmrPassword != null) {
-			println("Adding LWGMR repository in publishing repositories")
+		val tmvn = project.findProperty("TMVN_PASSWORD") as? String
+		if (tmvn != null) {
+			println("Adding Taskeren Maven in publishing repositories")
 			maven {
-				name = "LWGMR"
-				url = uri("https://lwgmr.elytra.cn")
+				url = uri("https://mvn.taskeren.cn/snapshots")
 				credentials {
 					username = "Taskeren"
-					password = lwgmrPassword
+					password = tmvn
 				}
 			}
 		}
