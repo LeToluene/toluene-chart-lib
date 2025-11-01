@@ -11,10 +11,8 @@ import org.intellij.lang.annotations.Language
 import toluene.chart.dyn.DynProject
 import toluene.chart.util.zstdDecompressOrSelf
 import kotlin.js.ExperimentalJsExport
-import kotlin.js.JsExport
 
 @OptIn(ExperimentalJsExport::class)
-@JsExport
 public object ChartLib {
 	/**
 	 * Encode the given chart to XML string.

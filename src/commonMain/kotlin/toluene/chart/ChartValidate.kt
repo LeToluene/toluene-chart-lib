@@ -6,13 +6,11 @@ import org.intellij.lang.annotations.Language
 import toluene.chart.util.ErrorGatherer
 import toluene.chart.util.throwIfErrors
 import kotlin.js.ExperimentalJsExport
-import kotlin.js.JsExport
 
 /**
  * Validate the given string as a Dynamite chart.
  * If the result is successful, it is a valid chart,
  */
-@JsExport
 @Deprecated("Use CMap.validate() instead")
 public fun validateChart(
 	@Language("XML") xmlString: String,
@@ -21,7 +19,6 @@ public fun validateChart(
 /**
  * Validate the given chart map.
  */
-@JsExport
 public fun CMap.validate(): List<ErrorGatherer.Error> =
 	ErrorGatherer()
 		.apply {

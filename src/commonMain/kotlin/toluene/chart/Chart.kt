@@ -8,11 +8,9 @@ import nl.adaptivity.xmlutil.serialization.XmlElement
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 import nl.adaptivity.xmlutil.util.CompactFragment
 import kotlin.js.ExperimentalJsExport
-import kotlin.js.JsExport
 
 @Serializable
 @XmlSerialName("CMap")
-@JsExport
 public data class CMap(
 	@XmlSerialName("m_path") @XmlElement val path: String,
 	@XmlSerialName("m_barPerMin") @XmlElement val barPerMin: Double,
@@ -27,7 +25,6 @@ public data class CMap(
 )
 
 @Serializable
-@JsExport
 public enum class SideType {
 	PAD,
 	MIXER,
@@ -35,14 +32,12 @@ public enum class SideType {
 }
 
 @Serializable
-@JsExport
 public data class NoteContainer(
 	@XmlSerialName("m_notes") @XmlChildrenName("CMapNoteAsset") val notes: List<CMapNoteAsset>,
 )
 
 @Serializable
 @XmlSerialName("CMapNoteAsset")
-@JsExport
 public data class CMapNoteAsset(
 	@XmlSerialName("m_id") @XmlElement val id: Int,
 	@XmlSerialName("m_type") @XmlElement val type: NoteType,
@@ -54,7 +49,6 @@ public data class CMapNoteAsset(
 )
 
 @Serializable
-@JsExport
 public enum class NoteType {
 	NORMAL,
 	CHAIN,
