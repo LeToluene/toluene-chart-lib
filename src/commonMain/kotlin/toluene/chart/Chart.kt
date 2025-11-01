@@ -31,6 +31,7 @@ public data class CMap(
 public enum class SideType {
 	PAD,
 	MIXER,
+	MULTI,
 }
 
 @Serializable
