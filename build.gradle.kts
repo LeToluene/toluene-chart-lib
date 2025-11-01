@@ -16,17 +16,6 @@ kotlin {
 	explicitApi()
 
 	jvm()
-	js(IR) {
-		browser()
-		binaries.library()
-		outputModuleName = "toluene-chart"
-		generateTypeScriptDefinitions()
-
-		compilations["main"].packageJson {
-			customField("homepage", "https://github.com/LeToluene/toluene-chart-lib")
-			customField("license", "LGPL-3.0-or-later")
-		}
-	}
 
 	sourceSets {
 		val commonMain by getting {
@@ -40,6 +29,9 @@ kotlin {
 		}
 
 		val commonTest by getting {
+			dependencies {
+				implementation(kotlin("test"))
+			}
 		}
 	}
 }
