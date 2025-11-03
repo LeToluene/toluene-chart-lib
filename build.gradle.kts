@@ -69,19 +69,5 @@ publishing {
 				}
 			}
 		}
-
-		val ghUsername = project.findProperty("gpr.user") as? String ?: System.getenv("USERNAME")
-		val ghPassword = project.findProperty("gpr.key") as? String ?: System.getenv("TOKEN")
-		if (ghUsername != null && ghPassword != null) {
-			println("Adding GPR repository in publishing repositories")
-			maven {
-				name = "GitHubPackages"
-				url = uri("https://maven.pkg.github.com/LeToluene/toluene-chart-lib")
-				credentials {
-					username = ghUsername
-					password = ghPassword
-				}
-			}
-		}
 	}
 }
