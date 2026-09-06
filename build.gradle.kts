@@ -28,7 +28,7 @@ kotlin {
 	sourceSets {
 		val commonMain by getting {
 			dependencies {
-				implementation("org.jetbrains:annotations:26.0.2-1")
+				implementation("org.jetbrains:annotations:26.1.0")
 				implementation("io.github.pdvrieze.xmlutil:serialization:0.91.2")
 				implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 				implementation("com.squareup.okio:okio:3.15.0")
