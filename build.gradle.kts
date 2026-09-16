@@ -7,7 +7,7 @@ plugins {
 	`maven-publish`
 
 	id("com.gradleup.shadow") version "9.2.2"
-	id("com.palantir.git-version") version "4.1.0"
+	id("com.palantir.git-version") version "4.3.0"
 }
 
 group = "cn.taskeren.toluene"
