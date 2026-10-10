@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-	kotlin("multiplatform") version "2.2.20"
+	kotlin("multiplatform") version "2.4.21"
 	kotlin("plugin.serialization") version "2.2.20"
 
 	`maven-publish`
